@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Issues in performance evaluation for host-pathogen protein interaction prediction</title>
+</head>
+
+<body>
+  <p>
+  <font color="red">
+Note: This page will be discontinued. Please visit my new webpage <a class="reference external" href="https://sites.google.com/view/fayyaz"> HERE </a> and update your bookmarks.
+	</font>
+</p>
+<div align="justify">
+  <table width="1191">
+    <tr>
+      <td width="200"><p><a href="http://faculty.pieas.edu.pk/fayyaz/bmi.html"><img src="images/1.gif" width="178" height="179" alt=""/></a></p></td>
+      <td width="979"><p><strong style="font-size: 24px">Issues in performance evaluation for host-pathogen protein interaction prediction</strong></p>
+        <p>by  <a href="http://faculty.pieas.edu.pk/fayyaz/wajid">Wajid Arshad Abbasi</a> and <a href="http://faculty.pieas.edu.pk/fayyaz/">Fayyaz ul Amir Afsar Minhas</a></p>
+      <p><a href="http://dcis.pieas.edu.pk/html/">Department of Computer and Information Sciences (DCIS)</a>, <a href="http://www.pieas.edu.pk/default.cshtml">Pakistan Institute of Engineering and Applied Sciences (PIEAS</a>)</p>
+      <p>Nilore, Islamabad, Pakistan</p></td>
+    </tr>
+    <tr>
+      <td height="159"><table width="200" border="0">
+        <tr>
+          <td colspan="2" style="font-size: 18px"><strong>Table of contents:</strong></td>
+          </tr>
+        <tr>
+          <td width="1">&nbsp;</td>
+          <td width="189"><ul>
+            <li><a href="#motivation">Motivation</a></li>
+            <li><a href="#eval_accuracy">Evaluation Accuracy</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#accuracy">Accuracy Metrics</a></li>
+            <li><a href="#references">References</a></li>
+            <li><a href="#suppl_mat">Supplementary  Material</a></li>
+            <li><a href="#citation">Citation Details</a></li>
+            <li><a href="#acknowledgment">Acknowledgements</a></li>
+          </ul></td>
+        </tr>
+      </table></td>
+      <td rowspan="2"><p><span style="text-align: justify; font-size: 18px;">The prediction of interaction between proteins is of great biological significance. A number of methods exist in the literature for this purpose. In this work, we investigate the impact of performance evaluation schemes on estimation of true generalization performance of protein-protein interaction (PPI) prediction. We have found that the widely used K-fold cross validation is not well suited for estimating this performance. This is because K-fold cross validation does not limit the degree of sequence similarity between training and test data. We have verified this hypothesis through simulation studies. The complete paper describing our approach has been published in the <em><a href="http://www.worldscientific.com/doi/abs/10.1142/S0219720016500116">Journal of Bioinformatics and Computational Biololgy</a></em>. Here, we present a brief summary of our approach along with supplementary material. The original paper can be downloaded from: <a href="http://www.worldscientific.com/doi/abs/10.1142/S0219720016500116">http://www.worldscientific.com/doi/abs/10.1142/S0219720016500116</a>. The published paper can be cited as below.</span></p>
+        <table width="988" border="1">
+          <tr>
+            <td width="978" height="45"><cite style="text-align: justify; font-size: 18px;">Wajid Arshad Abbasi and Fayyaz Ul Amir Afsar Minhas, Issues in performance evaluation for host–pathogen protein interaction prediction.  J. Bioinform. Comput. Biol. <strong><span itemprop="volume">14 (3)</span></strong>, 1650011 (2016) [16 pages] DOI: 10.1142/S0219720016500116</cite></td>
+          </tr>
+        </table>
+        <p><strong style="font-size: 24px"><a name= "motivation">Motivation</a></strong></p>
+        <p><span style="font-size: 18px; text-align: justify;">In order to understand the underlying mechanisms of infectious diseases and for developing novel therapeutic solutions, it is important to study the interactions between host and pathogen proteins. Experimental methods cannot be used for studying protein-protein interactions (PPIs) to investigate all possible host-pathogen interactions (HPI) due to constraints of time and cost. Therefore, computational approaches are crucial to support wet-lab methods by predicting promising PPIs. Such computational approaches can assist biologists in focusing on the most likely interactions. Machine learning is one of the computational approaches that can assist biologists by predicting promising PPIs. The general framework that describes the application of machine learning techniques in HPI prediction is shown below.</span></p>
+        <div>
+          <div align="center">
+            <p><img src="images/Fig.1.jpg" width="510" height="279" alt=""/></p>
+            <p style="text-align: center">Framework of machine   learning techniques in host-pathogen protein-protein interactions (PPIs)   prediction.</p>
+            <p style="text-align: center">(Original figure can be obtained from <a href="http://www.worldscientific.com/doi/abs/10.1142/S0219720016500116">published paper</a>)</p>
+          </div>
+        </div>
+        <p><strong style="font-size: 24px"><a name="eval_accuracy">Evaluation of accuracy</a></strong></p>
+        <p align="justify"><span style="font-size: 18px">In</span> <span style="font-size: 18px">machine learning based HPI predictors, a pair of proteins, one each from the host and the pathogen, is considered as a learning example. Experimentally discovered interactions are used as positive examples in training while negative or non-interacting examples are usually generated by pairing host-pathogen proteins randomly. To produce good classifiers, a considerable number of interacting and non-interacting pairs are typically needed.</span></p>
+        <p align="justify" style="text-align: justify; font-size: 18px;">There is a pressing need for accurate HPI predictors. A number of such predictors exist in the literature. However, our primary focus in this paper is the evaluation of accuracy of these p<span style="font-size: 18px">redictors. A bias that affects the measurement of the generalization performance of an HPI predictor stems from the fact that, in such predictors, classification examples are pairs of proteins. Machine learning problems involving paired inputs lead to unique challenges in the assessment of accuracy of such techniques as pointed out by t</span>he recent papers of Park <em>et al.<sup><a href="#1">1</a></sup></em> and Hamp <em>et al</em>.<sup><a href="#1">2</a></sup> In this work, we demonstrate the effect of this bias on performance assessment of HPI predictors through <em>K</em>-fold cross-validation by simulation studies.</p>
+        <p style="text-align: justify; font-size: 18px;">Most existing HPI predictors use a very simple<em> K</em>-fold cross-validation (CV)<sup><a href="#1">3</a></sup> scheme for performance evaluation. However, for HPI prediction a more elaborate analysis is required. This is because simple <em>K</em>-fold cross validation does not take the biological nature of the problem into account. It does not prevent similarity or redundancy between training and testing examples and can lead to inflated accuracy values. We hypothesize that this produces a disparity between the measured accuracy of an HPI predictor and its true generalization performance. This study is designed to test this hypothesis rigorously by carefully performing an experiment related to training and evaluation of HPIs predictors. We have also proposed a protein specific cross validation scheme called Leave One-pathogen Protein Out (LOPO) cross-validation specifically tuned for HPI predictors. In LOPO cross validation, protein pairs with respect to one pathogen protein involved in interactions are taken out for testing and remaining pairs are used for training. A discription of <em>K</em>-fold cross-validation and LOPO is shown  in the following figure using a toy dataset.</p>
+        <div align="center">
+          <table width="857">
+            <tr>
+              <td width="849" height="435" colspan="2"><p align="center"><img src="images/Fig.2.jpg" width="700" height="300" alt=""/></p>
+              <p style="text-align: justify; font-size: 16px;"><strong>Evaluation methodologies for host-pathogen protein interactions (HPI) predictors.</strong> In <em>K</em>-fold cross-validation, the original dataset is randomly partitioned into <em>K</em> equal sized subsets. Of the <em>K</em> subsets, <em>K</em>-1 sets are used as training and the remaining data is used for testing. This process is repeated <em>K</em> times to compute <em>K</em> performance measures which are then combined to produce a single accuracy metric. Redundancy with respect to both host and pathogen proteins can be seen. For example, <span style="font-size: 16px; font-style: normal;">proteins <strong><em>p<span style="font-style: inherit"><sub>1</sub></span></em></strong> and <em><strong>h<sub>1</sub> </strong></em>oc</span>cur in both training and test sets in each fold. In leave one pathogen protein out (LOPO) cross validation, protein pairs with respect to one pathogen protein involved in interactions are taken out for testing and remaining pairs are used for training. Redundancy with respect to pathogen protein is eliminated in this evaluation protocol. <span style="text-align: center">(Original figure can be obtained from <a href="http://www.worldscientific.com/doi/abs/10.1142/S0219720016500116">published paper</a>)</span></p></td>
+            </tr>
+          </table>
+        </div>
+        <p style="text-align: justify"><strong style="font-size: 24px"><a name="results">Results</a></strong></p>
+        <p style="font-size: 18px; text-align: justify;">In this work, we have used two different datasets (Human-HIV and Human-Adenovirus interactions), two different classifiers (A linear Support Vector Machines (SVM)<sup><a href="#1">4</a></sup> and a Random Forest (RF)<sup><a href="#1">5</a></sup>), a number of feature representations (k-mer composition<sup><a href="#1">6</a></sup>, proFET<sup><a href="#1">7</a></sup>, Blosum<sup><a href="#1">8</a></sup> and Evolutionary features<sup><a href="#1">9</a></sup>) and different matrices (AUC-PR and AUC-ROC)<sup><a href="#1">10</a></sup> to observe the impact of these choices on the validity of our hypothesis. </p>
+        <p style="font-size: 18px; text-align: justify;">With the standard <em>K</em>-fold cross-validation for the Human-HIV dataset we observe maximum AUC-ROC scores of 87%. This score is obtained using the Position Specific Frequency Matrix (PSFM) evolutionary features with an RF classifier (see Fig. S1 (c)). However, with LOPO cross-validation, the corresponding score is 53% as shown in Fig. S1 (d). A similar trend is observed for the Human- Adenovirus dataset as shown in Fig. S1 (e-h). <span style="font-size: 18px">We also observed the same effect in PR curves (results are presented in the <a href="http://www.worldscientific.com/doi/abs/10.1142/S0219720016500116">published paper</a>). </span></p>
+        <div align="center">
+          <table width="854">
+            <tr>
+              <td width="846" height="435" colspan="2"><p align="center"><img src="images/ROC_curves.jpg" width="836" height="1260" alt=""/></p>
+              <p style="text-align: justify; font-size: 16px;"><strong>Fig. S1.</strong> Receiver operating characteristic (ROC) graphs of <em>K</em>-fold and LOPO cross-validation for Human-HIV (<strong>a-d</strong>) and Human-Adenovirus (<strong>e-h</strong>) interaction datasets. Area under the curve is shown in parenthesis as mean ± standard deviation across different folds.</p></td>
+            </tr>
+          </table>
+        </div>
+        <table width="987">
+          <tr>
+            <td width="979" height="59" colspan="2"><p style="font-size: 18px; text-align: justify;">In order to present a clear comparison between <em>K</em>-fold and LOPO cross-validation schemes, we present radar plots of the AUC-PR over the two evaluation schemes for all models in Fig. S2. These plots clearly show that results computed with the <em>K</em>-fold cross-validation scheme are consistently higher than those from LOPO cross-validation for all classifiers, feature representations, data sets and performance metrics. Same effects are perceived in radar plots of AUC-ROC (<span style="font-size: 18px">results are presented in the <a href="http://www.worldscientific.com/doi/abs/10.1142/S0219720016500116">published paper</a></span>). </p></td>
+          </tr>
+        </table>
+        <div align="center">
+          <table width="851">
+            <tr>
+              <td width="843" height="435" colspan="2"><p align="center"><img src="images/radar.jpg" width="708" height="542" alt=""/></p>
+                <p align="center" style="text-align: justify; font-size: 16px;"><strong>Fig. S2</strong>. <strong>Radar plots of the AUC-PR over the two evaluation schemes for all models:</strong> (<strong>a</strong>) SVM and (<strong>b</strong>) Random Forest Classifiers for the HIV Dataset. Results using (<strong>c</strong>) SVM and (<strong>d</strong>) Random Forest Classifiers for the Adenovirus data.</p></td>
+            </tr>
+          </table>
+        </div>
+        <p style="font-size: 18px; text-align: justify;">The results presented above lend support to our hypothesis that redundancy between training and testing data of the predictor as consequence of <em>K</em>-fold cross validation can lead to inflated accuracy values. The predictor which was behaving quite well in 17-fold cross validation setting is behaving no better than a random classifier in LOPO cross validation setting. This is because of controlling redundancy at pathogen protein level during training and testing. <em>K</em>-fold cross validation is completely ineffective in controlling redundancy in training and test data for host-pathogen PPIs predictor. In <em>K</em>-fold cross validation, there is an underlying assumption that interactions of both host and pathogen proteins involved in test pair are known during training as pointed out by Hamp and Rost. This assumption is not practical in most interaction studies. The predictor optimized on the basis of this assumption will perform poorly while predicting the interaction of a novel host-pathogen protein pair. <span style="font-size: 18px;"> Most of the existing studies in the literature involving host-pathogen PPIs predictions use <em>K</em>-fold cross-validation for performance evaluation. Therefore, results from existing techniques may be misleading and should be interpreted with a grain of salt.
+        With the consistency in the differences in results between <em>K-fold</em> and LOPO cross-validation observed over the wide array of models, data sets and performance metrics used in our analysis, we are confident that this phenomenon can be extrapolated to other HPI predictors. </span></p>
+        <p style="font-size: 18px; text-align: justify;"><strong style="font-size: 24px"><a name="accuracy">Accuracy Metrics</a></strong></p>
+        <p style="font-size: 18px; text-align: justify;">We also point out another issue in the evaluation of HPI predictors. Accuracy measures, such as areas under the precision-recall (AUC-PR) or receiver operating characteristic (AUC-ROC) curves, accuracy and F<sub>1 </sub>score are typically used in the area of machine learning and for presenting the results for an HPI predictor. These measures, though important in the analysis of classifiers, are not directly useful to a biologist who is interested in employing an HPI predictor for designing wet-lab experiments to identify potential interactions. Therefore, we propose three new domain specific metrics in this paper called True Hit Rate (THR), False Hit Rate (FHR) and Median Rank of the First Positive Prediction (MRFPP) which can assist a biologist in experiment design. The results of these metrics are present below in Table 1.</p>
+        <div align="center">
+          <table width="862" height="360">
+            <tr>
+              <td width="854" height="354" colspan="2"><p align="center"><img src="images/table.jpg" width="590" height="352" alt=""/></p></td>
+            </tr>
+          </table>
+          <div align="justify"><span style="font-size: 18px; text-align: justify;">For the human-HIV data set, we obtained a maximum THR of 29% with 3-mer features by using both SVM and RF classifiers. This indicates that the top scoring example for 5 out of 17 HIV proteins (i.e., ~29%) in their corresponding folds in LOPO cross-validation is indeed a positive example. The best value of FHR is 1% which means that, on average, ~1% of negative examples rank higher than the top scoring positive example for any pathogen protein. Similarly, the best MRFPP of 4 reveals that for 50% of the pathogen proteins, a positive example occurs within the top 4 predictions. </span></div>
+        </div>
+        <table width="983">
+          <tr>
+            <td width="975" height="309" colspan="2"><p style="font-size: 24px"><strong><a name="references">References</a></strong></p>
+              <ol>
+               <a name="1"> </a><li>Park Y, Marcotte EM, <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3531800/">A flaw in the typical evaluation scheme for pair-input computational predictions</a>, <em>Nat Methods</em> <strong>9</strong>:1134–1136, 2012.</li>
+                <li>Hamp T, Rost B, <a href="http://www.ncbi.nlm.nih.gov/pubmed/25586513">More challenges for machine learning protein interactions</a>, <em>Bioinformatics</em> <strong>31</strong>:1521–1525, 2015.</li>
+                <li>Alpaydin E, Design and Analysis of Machine Learning Experiments, <a href="https://mitpress.mit.edu/books/introduction-machine-learning">In Introduction to Machine Learning</a>, 2nd edition, MIT Press, Cambridge, Massachusetts, pp. 486-488, 2010.</li>
+                <li>Cortes C, Vapnik V, <a href="http://link.springer.com/article/10.1023%2FA%3A1022627411411#page-1">Support-Vector Networks</a>, <em>Mach Learn</em> <strong>20</strong>:273–297, 1995.</li>
+                <li>Breiman L, <a href="http://link.springer.com/article/10.1023%2FA%3A1010933404324#page-1">Random Forests</a>, <em>Mach Learn</em> <strong>45</strong>:5–32, 2001. </li>
+                <li>Leslie C, Eskin E, Noble WS, <a href="http://www.ncbi.nlm.nih.gov/pubmed/11928508">The spectrum kernel: a string kernel for SVM protein classification</a>, <em>Pac Symp Biocomput,</em> pp. 564–575, 2002. </li>
+                <li>Ofer D, Linial M, <a href="http://www.ncbi.nlm.nih.gov/pubmed/26130574">ProFET: Feature engineering captures high-level protein functions</a>, <em>Bioinformatics</em> <strong>31</strong>:3429–3436, 2015.</li>
+                <li>Zaki N, Lazarova-Molnar S, El-Hajj W, Campbell P, <a href="http://www.ncbi.nlm.nih.gov/pubmed/19445721">Protein-protein interaction based on pairwise similarity</a>, <em>BMC Bioinformatics</em> <strong>10</strong>:150, 2009.</li>
+                <li>Hamp T, Rost B, <a href="http://bioinformatics.oxfordjournals.org/content/early/2015/02/04/bioinformatics.btv077.abstract">Evolutionary profiles improve protein-protein interaction prediction from sequence</a>, <em>Bioinformatics</em> <strong>31</strong>:1945–1950, 2015. </li>
+                <li>Davis J, Goadrich M, <a href="http://dl.acm.org/citation.cfm?id=1143874">The Relationship between Precision-Recall and ROC Curves</a>, In <em>Proceedings of the 23rd International Conference on Machine Learning</em>, ACM, pp. 233–240, 2006. </li>
+              </ol>
+              <p style="font-size: 24px"><strong><a name="suppl_mat">Supplementary  Material</a></strong></p>
+              <p>Following information related to this project is readily available to download.</p>
+              <ul>
+                <li> <a href="Supplementray_material/preprint.pdf">Preprint </a></li>
+                In accordance with JBCB policy, this preprint is the original version before peer review. The published paper, thanks to the anonymous reviewers, is significantly improved in comparison to the preprint.
+                <li><a href="Supplementray_material/dataset.zip">Datasets</a></li>
+                This is the data set of HIV-Human and Adenovirus-Human interactions used in the study.
+              </ul>
+              <p style="font-size: 24px"><strong><a name="citation">Citation details</a></strong></p>
+              <p>Wajid Arshad Abbasi and Fayyaz Ul Amir Afsar Minhas, <a href="http://www.worldscientific.com/doi/abs/10.1142/S0219720016500116">Issues in performance evaluation for host–pathogen protein interaction prediction.</a>  <em>J. Bioinform. Comput. Biol.</em> <strong><span itemprop="volume">14 (3)</span></strong>, 1650011 (2016) [16 pages] DOI: 10.1142/S0219720016500116</p>
+              <p style="font-size: 24px"> <strong><a name="acknowledgment">Acknowledgments</a></strong></p>
+              <p>Wajid Arshad Abbasi would like to acknowledge his funding from the <a href="http://www.hec.gov.pk/InsideHEC/Divisions/HRD/Scholarships/LocalScholarships/IPHDFP5000F/Pages/introduction1.aspx">Higher Education Commission (HEC)</a> of Pakistan.</p></td>
+          </tr>
+        </table>
+      <p style="text-align: justify">&nbsp;</p></td>
+    </tr>
+    <tr>
+      <td height="5350">&nbsp;</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
